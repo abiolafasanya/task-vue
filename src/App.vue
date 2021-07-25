@@ -1,11 +1,11 @@
 <template>
     <Header title="GYM Tracker" />
+    <AddTask @add-task="addTask" />
     <Tasks 
       @delete-task="deleteTask" 
       @task-completed="isCompleted" 
       :tasks="tasks"
     />
-    <AddTask />
 </template>
 
 <script>
@@ -26,18 +26,23 @@ export default {
    }
  },
   methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task]
+    },
+
     deleteTask(id) {
       if(confirm('Are you sure you want to delete')){
         this.tasks = this.tasks.filter((task) => task.id !== id)
         console.log('Task', id, 'deleted')
       }
     },
+
     isCompleted(id) {
       this.tasks = this.tasks.map((task) => task.id === id ?
          {...task, completed : !task.completed} : task
       )
       console.log('is completed', id)
-    }
+    },
   },
  created() {
         this.tasks = [
