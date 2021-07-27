@@ -1,7 +1,7 @@
 <template>
     <form @submit="onSubmit">
         <label for=""> Add Task</label>
-        <input v-model="title" type="text" placeholder="Type task her" />
+        <input v-model="title" type="text" placeholder="Type task here" />
         <input v-model="day" type="date" >
         <div class="checkboxThree">
             <input v-model="completed" type="checkbox" value="1" id="checkboxThreeInput" name="" />

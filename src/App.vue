@@ -1,6 +1,12 @@
 <template>
-    <Header title="GYM Tracker" />
-    <AddTask @add-task="addTask" />
+    <Header title="GYM Tracker"
+            @toggle-add="toggleAdd"
+            :btnToggle="showAddTask"
+    
+    />
+    <div v-if="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks 
       @delete-task="deleteTask" 
       @task-completed="isCompleted" 
@@ -22,10 +28,15 @@ export default {
   },
  data() {
    return {
-     tasks: []
+     tasks: [],
+     showAddTask : false,
    }
  },
   methods: {
+    toggleAdd() {
+      this.showAddTask = !this.showAddTask
+    },
+
     addTask(task) {
       this.tasks = [...this.tasks, task]
     },
@@ -85,31 +96,3 @@ body {
   /* height: 100vh; */
 }
 </style>
-
-//  data () {
-//    return {
-//      tasks = []
-//    }
-//   },
-//   created () {
-//      this.tasks = [
-//       {
-//         'id' : 1,
-//         'task' : 'push ups',
-//         'day' : '22-07-2021',
-//         'completed': true
-//       },
-//       {
-//         'id' : 2,
-//         'task' : 'jogging',
-//         'day' : '25-07-2021',
-//         'completed': true
-//       },
-//       {
-//         'id' : 3,
-//         'task' : 'gyming',
-//         'day' : '30-07-2021',
-//         'completed': false
-//       },
-//     ]
-//   }

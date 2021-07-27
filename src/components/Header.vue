@@ -1,7 +1,11 @@
 <template>
         <header>
             <h1>{{title}}</h1>
-            <Button text="Add Activity" color="green" />
+            <Button 
+                @toggle-add="$emit('toggle-add')" 
+                :text="btnToggle ? 'Close' : 'Add Task'" 
+                :class="btnToggle ? 'close' : 'open'" 
+            />
         </header>
 </template>
 
@@ -14,11 +18,13 @@ export default {
         title: {
             String,
             default: 'Gym tracker'
-        }
+        },
+        btnToggle: Boolean,
     },
     components: {
         Button,
-    }
+    },
+    // emits: ['toggle-add']
 }
 </script>
 
@@ -31,3 +37,5 @@ export default {
         padding: 2px 15px;
     }
 </style>
+
+// :text="btnToggle ? 'Close' : 'Add Task' " color="green"
