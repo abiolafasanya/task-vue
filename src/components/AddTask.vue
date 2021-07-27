@@ -29,19 +29,23 @@ export default {
         onSubmit(e){
             e.preventDefault()
 
-            if(!this.title){
+            if(this.title === null || this.title === ''){
                 alert('Please add a task')
+                return
             }
 
-            const newTask = {
-                id: Math.floor(Math.random() * 100000),
-                title: this.title,
-                day: this.day,
-                completed: this.completed
+            else {
+                const newTask = {
+                    id: Math.floor(Math.random() * 100000),
+                    title: this.title,
+                    day: this.day,
+                    completed: this.completed
+                }
+                console.log(newTask)
+                this.$emit('add-task', newTask)
+                }
+
             }
-            console.log(newTask)
-            this.$emit('add-task', newTask)
-        }
     }
 }
 </script>
